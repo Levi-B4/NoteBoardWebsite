@@ -3,24 +3,142 @@
     --colorPaletteBlue: #007ea7ff;
     --colorPaletteLime: #ceff1aff;
     --colorPaletteRed: #fb3640ff;
-    --colorPaletteWhite: #ffffffff;
+    --colorPaletteWhite: #ffffffd0;
+
+
+    --paper-shadow: #c9bf8d;
+    --paper-dark-yellow: #e5c93d;
+    --paper-color-yellow: #ffed87;
+
+    --pin-color: #d02627;
+    --pin-dark: #9e0608;
+    --pin-light: #fc7e7d;
+
+
+
 }
 
 body {
-    margin: 0;
-    background-color: var(--colorPaletteBlack);
-    color: var(--colorPaletteBlue);
-    text-align: center;
-    font-size:xx-large;
+    display: flex;
+    justify-content: center;
+    padding: 10vmin;
+    background-color: #c3cde8;
+    font-family: "Caveat", cursive;
+    font-size: 2rem;
 }
 
-h1 {
-    color: var(--colorPaletteLime);
-    text-decoration: underline;
+.ToDos {
+    display: grid;
+    grid-template-columns:auto;
+    grid-template-rows:auto;
 }
 
-.ToDoList {
-    display: inline-block;
-    list-style-position: inside;
-    text-align: left;
+.paper {
+    /*change pos for each note, maybe have a grid and attach to random cells*/
+    /*grid-column: x;
+    grid-row: y;*/
+    display: flex;
+    justify-content: center;
+    min-width: 325px;
+    min-height: 175px;
+    background: linear-gradient(
+        135deg,
+        /*cycle between colors*/
+        var(--paper-dark-yellow),
+        30%,
+        var(--paper-color-yellow)
+    );
+    /*make rotation random and box shadow match*/
+    box-shadow: 3px 3px 2px var(--paper-shadow);
+    transform: rotate(10deg);
+    transform-origin: top left;
+}
+
+.paper p {
+    margin: auto;
+}
+
+.pin {  
+    position: absolute;
+    left: 20px;
+    width: 60px;
+    height: 50px;
+}
+
+.shadow {
+    position: absolute;
+    top: 18px;
+    left: -8px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: radial-gradient(var(--paper-shadow), 20%, rgba(201, 191, 141, 0));
+}
+
+.metal {
+    position: absolute;
+    width: 5px;
+    height: 20px;
+    background: linear-gradient(to right, #808080, 40%, #eae8e8, 50%, #808080);
+    border-radius: 0 0 30% 30%;
+    transform: rotate(50deg);
+    transform-origin: bottom left;
+    top: 15px;
+    border-bottom: 1px solid #808080;
+}
+  
+.bottom-circle {
+    position: absolute;
+    right: 15px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: var(--pin-color);
+    background: radial-gradient(
+        circle at bottom right,
+        var(--pin-light),
+        25%,
+        var(--pin-dark),
+        90%,
+        var(--pin-color)
+    );
+}
+  
+/* Barrel */
+.bottom-circle::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -2px;
+    width: 20px;
+    height: 30px;
+    transform: rotate(55deg);
+    transform-origin: 100% 100%;
+    border-radius: 0 0 40% 40%;
+    background: linear-gradient(
+        to right,
+        var(--pin-dark),
+        30%,
+        var(--pin-color),
+        90%,
+        var(--pin-light)
+    );
+}
+  
+/* Top circle */
+.bottom-circle::after {
+    content: "";
+    position: absolute;
+    right: -10px;
+    top: -5px;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle at right,
+        var(--pin-light),
+        30%,
+        var(--pin-color),
+        var(--pin-dark) 80%
+    );
 }
