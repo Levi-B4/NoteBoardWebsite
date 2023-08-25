@@ -1,0 +1,26 @@
+:root {
+    --colorPaletteBlack: #191919ff;
+    --colorPaletteBlue: #007ea7ff;
+    --colorPaletteLime: #ceff1aff;
+    --colorPaletteRed: #fb3640ff;
+    --colorPaletteWhite: #ffffffff;
+}
+
+body {
+    margin: 0;
+    background-color: var(--colorPaletteBlack);
+    color: var(--colorPaletteBlue);
+    text-align: center;
+    font-size:xx-large;
+}
+
+h1 {
+    color: var(--colorPaletteLime);
+    text-decoration: underline;
+}
+
+.ToDoList {
+    display: inline-block;
+    list-style-position: inside;
+    text-align: left;
+}
