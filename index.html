@@ -1,46 +1,58 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>To-Do List</title>
-        <link rel="stylesheet" href="css/style.css">
-        <script src="js/jscript.js"></script>
-    </head>
+  <head>
+      <title>To-Do List</title>
+      <link rel="stylesheet" href="css/style.css">
+      
+  </head>
 
-    <body>
-        <div class="ToDos">
-            <div class="paper">
-                <div class="pin">
-                  <div class="shadow"></div>
-                  <div class="metal"></div>
-                  <div class="bottom-circle"></div>
-                </div>
-                <p>Get Groceries</p>
-            </div>
-            <div class="paper">
-                <div class="pin">
-                  <div class="shadow"></div>
-                  <div class="metal"></div>
-                  <div class="bottom-circle"></div>
-                </div>
-                <p>Do Laundry</p>
-            </div>
-            <div class="paper">
-                <div class="pin">
-                  <div class="shadow"></div>
-                  <div class="metal"></div>
-                  <div class="bottom-circle"></div>
-                </div>
-                <p>Update Website</p>
-            </div>
-            <div class="paper">
-                <div class="pin">
-                  <div class="shadow"></div>
-                  <div class="metal"></div>
-                  <div class="bottom-circle"></div>
-                </div>
-                <p>Do Dishes</p>
-            </div>
+  <body>
+    <div id="ToDos">
+      <div class="pin" onclick="addNote()">
+        <div class="shadow"></div>
+        <div class="metal"></div>
+        <div class="bottom-circle"></div>
+        <div class="sign">+</div>
+      </div>
+
+      <div class="paper" id="pinkPaper">
+        <div class="pin" onclick="removeNote()">
+          <div class="shadow"></div>
+          <div class="metal"></div>
+          <div class="bottom-circle"></div>
+          <div class="sign">-</div>
         </div>
-    </body>
+        <p>Get Groceries</p>
+      </div>
+      <div class="paper" id="yellowPaper">
+        <div class="pin">
+          <div class="shadow"></div>
+          <div class="metal"></div>
+          <div class="bottom-circle"></div>
+          <div class="sign">-</div>
+        </div>
+        <p>Do Laundry</p>
+      </div>
+      <div class="paper" id="bluePaper">
+        <div class="pin">
+          <div class="shadow"></div>
+          <div class="metal"></div>
+          <div class="bottom-circle"></div>
+          <div class="sign">-</div>
+        </div>
+        <p>Update Website</p>
+      </div>
+      <div class="paper" id="greenPaper">
+        <div class="pin">
+          <div class="shadow"></div>
+          <div class="metal"></div>
+          <div class="bottom-circle"></div>
+          <div class="sign">-</div>
+        </div>
+        <p>Do Dishes</p>
+      </div>
+    </div>
+  </body>
 
+  <script src="js/jscript.js"></script>
 </html>

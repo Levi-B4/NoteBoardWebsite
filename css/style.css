@@ -6,9 +6,22 @@
     --colorPaletteWhite: #ffffffd0;
 
 
-    --paper-shadow: #c9bf8d;
+    --paper-shadow-yellow: #c9bf8d;
     --paper-dark-yellow: #e5c93d;
     --paper-color-yellow: #ffed87;
+
+    --paper-shadow-blue: #8dc6c9;
+    --paper-dark-blue: #3de3e5;
+    --paper-color-blue: #87f7ff;
+
+    --paper-shadow-pink: #c98dbc;
+    --paper-dark-pink: #e53dc1;
+    --paper-color-pink: #ff87e7;
+
+    --paper-shadow-green: #8dc996;
+    --paper-dark-green: #3de54f;
+    --paper-color-green: #87ff9a;
+    /*add more colors for gradient*/
 
     --pin-color: #d02627;
     --pin-dark: #9e0608;
@@ -27,10 +40,10 @@ body {
     font-size: 2rem;
 }
 
-.ToDos {
+#ToDos {
     display: grid;
-    grid-template-columns:auto;
-    grid-template-rows:auto;
+    grid-template-columns:repeat(5, 1fr);
+    grid-template-rows:repeat(4, 1fr);
 }
 
 .paper {
@@ -41,6 +54,11 @@ body {
     justify-content: center;
     min-width: 325px;
     min-height: 175px;
+    transform: rotate(10deg);
+    transform-origin: top left;
+}
+
+#yellowPaper {
     background: linear-gradient(
         135deg,
         /*cycle between colors*/
@@ -48,10 +66,42 @@ body {
         30%,
         var(--paper-color-yellow)
     );
-    /*make rotation random and box shadow match*/
-    box-shadow: 3px 3px 2px var(--paper-shadow);
-    transform: rotate(10deg);
-    transform-origin: top left;
+    box-shadow: 3px 3px 2px var(--paper-shadow-yellow);
+}
+
+#bluePaper {
+    background: linear-gradient(
+        135deg,
+        /*cycle between colors*/
+        var(--paper-dark-blue),
+        30%,
+        var(--paper-color-blue)
+    );
+    box-shadow: 3px 3px 2px var(--paper-shadow-blue);
+}
+
+#pinkPaper {
+    background: linear-gradient(
+        135deg,
+        /*cycle between colors*/
+        var(--paper-dark-pink),
+        30%,
+        var(--paper-color-pink)
+    );
+    box-shadow: 3px 3px 2px var(--paper-shadow-pink);
+    grid-column: 1;
+    grid-row: 1;
+}
+
+#greenPaper {
+    background: linear-gradient(
+        135deg,
+        /*cycle between colors*/
+        var(--paper-dark-green),
+        30%,
+        var(--paper-color-green)
+    );
+    box-shadow: 3px 3px 2px var(--paper-shadow-green);
 }
 
 .paper p {
@@ -141,4 +191,10 @@ body {
         var(--pin-color),
         var(--pin-dark) 80%
     );
+}
+
+.sign {
+    position: absolute;
+    right: 10px;
+    top: -20px;
 }
