@@ -1,21 +1,26 @@
-var paperTypes = [[1,2],[2,3],[3,4],[4,5]];
+var paperColors = ["pinkPaper", "yellowPaper", "bluePaper", "greenPaper"];
 
-function removeNote() {
-    note = document.getElementById("pinkPaper");
-
-    note.remove();
+function getRandomInt(min, max) {
+    return Math.floor((Math.random() * (max - min)) + min);
 }
 
-function addNote() {
+function removeNote(note) {
+    note.parentElement.remove();
+}
+
+function createNote() {
     noteBoard = document.getElementById("ToDos");
 
     note = document.createElement("div");
     note.setAttribute('class', 'paper');
-    note.setAttribute('id', 'pinkPaper');
+    note.setAttribute('id', paperColors[getRandomInt(0, 4)]);
+    note.style.transform = 'rotate(' + getRandomInt(-20, 20) + 'deg)'; 
 
     pin = document.createElement("div");
     pin.setAttribute('class', 'pin');
-    pin.setAttribute('onclick', 'removeNote()');
+    pin.setAttribute('onclick', 'removeNote(this)');
+    pin.style.transform = 'rotate(' + getRandomInt(0,45) + 'deg)'; 
+
 
     shadow = document.createElement("div");
     shadow.setAttribute('class', 'shadow');
@@ -30,8 +35,8 @@ function addNote() {
     sign.setAttribute('class', 'sign');
     sign.innerHTML = "-";
 
-    noteText = document.createElement("p");
-    noteText.innerHTML = "Create New Note";
+    noteText = document.createElement("textarea");
+    noteText.placeholder = "Create New Note";
 
     pin.appendChild(shadow);
     pin.appendChild(metal);
@@ -44,4 +49,11 @@ function addNote() {
 
     noteBoard.appendChild(note, pin, shadow, metal, bottomCircle, sign);
 
+    note.followCursor(this);
+}
+
+
+function followCursor(follower) {
+     follower.style.position = 'absolute';
+     //follower.style.left = event.pageX; --depricated
 }

@@ -41,9 +41,11 @@ body {
 }
 
 #ToDos {
+    /*
     display: grid;
     grid-template-columns:repeat(5, 1fr);
     grid-template-rows:repeat(4, 1fr);
+    */
 }
 
 .paper {
@@ -89,8 +91,10 @@ body {
         var(--paper-color-pink)
     );
     box-shadow: 3px 3px 2px var(--paper-shadow-pink);
+    /*
     grid-column: 1;
     grid-row: 1;
+    */
 }
 
 #greenPaper {
@@ -104,8 +108,18 @@ body {
     box-shadow: 3px 3px 2px var(--paper-shadow-green);
 }
 
-.paper p {
+.paper p, .paper textarea {
     margin: auto;
+    
+}
+
+.paper textarea {
+    font-family: "Caveat", cursive;
+    font-size: 2rem;
+    background: transparent;
+    border: none;
+    outline: none;
+    text-align: center;
 }
 
 .pin {  
