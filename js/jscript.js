@@ -1,5 +1,8 @@
 var paperColors = ["pinkPaper", "yellowPaper", "bluePaper", "greenPaper"];
 
+const Controller = new AbortController();
+const { Signal } = Controller;
+
 function getRandomInt(min, max) {
     return Math.floor((Math.random() * (max - min)) + min);
 }
@@ -9,8 +12,6 @@ function removeNote(note) {
 }
 
 function createNote() {
-    noteBoard = document.getElementById("ToDos");
-
     note = document.createElement("div");
     note.setAttribute('class', 'paper');
     note.setAttribute('id', paperColors[getRandomInt(0, 4)]);
@@ -47,13 +48,25 @@ function createNote() {
     note.appendChild(pin);
     note.appendChild(noteText);
 
+    noteBoard = document.getElementById("ToDos");
     noteBoard.appendChild(note, pin, shadow, metal, bottomCircle, sign);
 
-    note.followCursor(this);
+    followCursor(note);
+    note.setAttribute("onclick", "setNote(note)");
 }
 
+function setNote(note) {
+    newNote = note.cloneNode(true);
+    Controller.abort();
+    document.getElementById("ToDos").appendChild(newNote);
+    newNote.removeAttribute("onclick");
+}
 
 function followCursor(follower) {
      follower.style.position = 'absolute';
-     //follower.style.left = event.pageX; --depricated
+
+     document.addEventListener('mousemove', (e) => {
+        follower.style.top = (e.pageY - 25) + 'px';
+        follower.style.left = (e.pageX - 20)  + 'px';
+    }, { Signal });
 }
