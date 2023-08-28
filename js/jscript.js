@@ -46,7 +46,7 @@ function createNote() {
 
     //creates text area with placeholder on note
     noteText = document.createElement("textarea");
-    noteText.placeholder = "Create New Note";
+    noteText.placeholder = "click to type note";
 
     //adds pin visuals to pin
     pin.appendChild(shadow);
