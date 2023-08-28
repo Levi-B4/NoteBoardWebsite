@@ -1,11 +1,9 @@
 :root {
-    --colorPaletteBlack: #191919ff;
-    --colorPaletteBlue: #007ea7ff;
-    --colorPaletteLime: #ceff1aff;
-    --colorPaletteRed: #fb3640ff;
-    --colorPaletteWhite: #ffffffd0;
+    /*color of background*/
+    --board-color: #c3cde8;
 
 
+    /*colors for each note color gradient*/
     --paper-shadow-yellow: #c9bf8d;
     --paper-dark-yellow: #e5c93d;
     --paper-color-yellow: #ffed87;
@@ -21,37 +19,34 @@
     --paper-shadow-green: #8dc996;
     --paper-dark-green: #3de54f;
     --paper-color-green: #87ff9a;
-    /*add more colors for gradient*/
 
+    /*colors for pin head*/
     --pin-color: #d02627;
     --pin-dark: #9e0608;
     --pin-light: #fc7e7d;
 
+    /*gradient for metal of pin*/
+    --pin-metal-gradient: linear-gradient(to right, #808080, 40%, #eae8e8, 50%, #808080);
 
+    /*color where pin touches the note*/
+    --metal-note-contact-color: #808080;
 
+    /*gradient for pin shadow*/
+    --pin-shadow-gradient: radial-gradient(#00000025, 20%, #c9bf8d00);
 }
 
+/*Board styling*/
 body {
     display: flex;
     justify-content: center;
     padding: 10vmin;
-    background-color: #c3cde8;
+    background-color: var(--board-color);
     font-family: "Caveat", cursive;
     font-size: 2rem;
 }
 
-#ToDos {
-    /*
-    display: grid;
-    grid-template-columns:repeat(5, 1fr);
-    grid-template-rows:repeat(4, 1fr);
-    */
-}
-
+/*note styling*/
 .paper {
-    /*change pos for each note, maybe have a grid and attach to random cells*/
-    /*grid-column: x;
-    grid-row: y;*/
     display: flex;
     justify-content: center;
     min-width: 325px;
@@ -60,6 +55,7 @@ body {
     transform-origin: top left;
 }
 
+/*styling to color note for each color*/
 #yellowPaper {
     background: linear-gradient(
         135deg,
@@ -70,7 +66,6 @@ body {
     );
     box-shadow: 3px 3px 2px var(--paper-shadow-yellow);
 }
-
 #bluePaper {
     background: linear-gradient(
         135deg,
@@ -81,7 +76,6 @@ body {
     );
     box-shadow: 3px 3px 2px var(--paper-shadow-blue);
 }
-
 #pinkPaper {
     background: linear-gradient(
         135deg,
@@ -96,7 +90,6 @@ body {
     grid-row: 1;
     */
 }
-
 #greenPaper {
     background: linear-gradient(
         135deg,
@@ -108,11 +101,10 @@ body {
     box-shadow: 3px 3px 2px var(--paper-shadow-green);
 }
 
+/*text styling*/
 .paper p, .paper textarea {
     margin: auto;
-    
 }
-
 .paper textarea {
     font-family: "Caveat", cursive;
     font-size: 2rem;
@@ -122,13 +114,14 @@ body {
     text-align: center;
 }
 
+/*pin location on note and size*/
 .pin {  
     position: absolute;
     left: 20px;
     width: 60px;
     height: 50px;
 }
-
+/*shadow of pin*/
 .shadow {
     position: absolute;
     top: 18px;
@@ -136,21 +129,21 @@ body {
     width: 35px;
     height: 35px;
     border-radius: 50%;
-    background: radial-gradient(var(--paper-shadow), 20%, rgba(201, 191, 141, 0));
+    background: var(--pin-shadow-gradient);
 }
-
+/*pin needle creation*/
 .metal {
     position: absolute;
     width: 5px;
     height: 20px;
-    background: linear-gradient(to right, #808080, 40%, #eae8e8, 50%, #808080);
+    background: var(--pin-metal-gradient);
     border-radius: 0 0 30% 30%;
     transform: rotate(50deg);
     transform-origin: bottom left;
     top: 15px;
-    border-bottom: 1px solid #808080;
-}
-  
+    border-bottom: 1px solid var(--metal-note-contact-color);
+} 
+/*pin head*/
 .bottom-circle {
     position: absolute;
     right: 15px;
@@ -167,8 +160,7 @@ body {
         var(--pin-color)
     );
 }
-  
-/* Barrel */
+/*pin head creation animation*/
 .bottom-circle::before {
     content: "";
     position: absolute;
@@ -188,8 +180,6 @@ body {
         var(--pin-light)
     );
 }
-  
-/* Top circle */
 .bottom-circle::after {
     content: "";
     position: absolute;
@@ -206,7 +196,7 @@ body {
         var(--pin-dark) 80%
     );
 }
-
+/*styling of sign to place on pin*/
 .sign {
     position: absolute;
     right: 10px;

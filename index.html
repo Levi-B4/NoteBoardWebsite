@@ -2,12 +2,13 @@
 <html>
   <head>
       <title>To-Do List</title>
-      <link rel="stylesheet" href="css/style.css">
-      
+      <link rel="stylesheet" href="./css/style.css">
+      <script src="./js/jscript.js"></script>
   </head>
 
   <body>
     <div id="ToDos">
+      <!--Pin which user clicks to create more notes-->
       <div class="pin" onclick="createNote()">
         <div class="shadow"></div>
         <div class="metal"></div>
@@ -15,33 +16,7 @@
         <div class="sign">+</div>
       </div>
 
-      <div class="paper" id="pinkPaper">
-        <div class="pin" onclick="removeNote(this)">
-          <div class="shadow"></div>
-          <div class="metal"></div>
-          <div class="bottom-circle"></div>
-          <div class="sign">-</div>
-        </div>
-        <p>Get Groceries</p>
-      </div>
-      <div class="paper" id="yellowPaper">
-        <div class="pin" onclick="removeNote(this)">
-          <div class="shadow"></div>
-          <div class="metal"></div>
-          <div class="bottom-circle"></div>
-          <div class="sign">-</div>
-        </div>
-        <p>Do Laundry</p>
-      </div>
-      <div class="paper" id="bluePaper">
-        <div class="pin" onclick="removeNote(this)">
-          <div class="shadow"></div>
-          <div class="metal"></div>
-          <div class="bottom-circle"></div>
-          <div class="sign">-</div>
-        </div>
-        <p>Update Website</p>
-      </div>
+      <!--Basic instructions for user to use website-->
       <div class="paper" id="greenPaper">
         <div class="pin" onclick="removeNote(this)">
           <div class="shadow"></div>
@@ -49,10 +24,8 @@
           <div class="bottom-circle"></div>
           <div class="sign">-</div>
         </div>
-        <p>Do Dishes</p>
+        <p>click '+' to add notes<br>'-' to delete notes</p>
       </div>
     </div>
-  </body>
-
-  <script src="js/jscript.js"></script>
+  </body>  
 </html>
