@@ -24,6 +24,8 @@ openDBRequest.addEventListener("success", () => {
 openDBRequest.addEventListener("upgradeneeded", (e) => {
     db = e.target.result;
 
+    displayInstructions();
+
     //create an object store to store notes and add an auto-incrementing key
     const objectStore = db.createObjectStore("noteboardObjectStore", {
         keyPath: "id",
