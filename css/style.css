@@ -45,21 +45,74 @@ body {
     font-size: 2rem;
 }
 
+/*styling for website ui*/
+#ui {
+    display: flex;
+}
+/*also part of pin class*/
+#createNotePin {  
+    /*size*/
+    width: 60px;
+    height: 50px;
+    /*position*/
+    position: absolute;
+    left: 30px;
+    top: 30px;
+}
+/*also part of paper class*/
+.dataButton {
+    /*size*/
+    min-width: 125px;
+    min-height: 50px;
+    /*position: coordinates in html tag*/
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    transform-origin: top left;
+    /*color*/
+    background: linear-gradient(
+        135deg,
+        var(--pin-light),
+        30%,
+        var(--pin-color)
+    );
+    box-shadow: 3px 3px 2px var(--pin-dark);
+}
+
+#saveButton {
+    top:100px;
+    left:5px;
+}
+
+#clearButton {
+    top:175px;
+    left:5px;
+}
+
 /*note styling*/
 .paper {
     display: flex;
     justify-content: center;
-    min-width: 325px;
+    width: 350px;
     min-height: 175px;
     transform: rotate(10deg);
     transform-origin: top left;
+}
+
+.paperText {
+    vertical-align: middle;
+    text-align: center;
+    margin-top: 50px;
+    margin-left: 10px;
+    margin-right: 10px;
+    min-width: 200px;
+    min-height: 50px;
 }
 
 /*styling to color note for each color*/
 #yellowPaper {
     background: linear-gradient(
         135deg,
-        /*cycle between colors*/
         var(--paper-dark-yellow),
         30%,
         var(--paper-color-yellow)
@@ -69,7 +122,6 @@ body {
 #bluePaper {
     background: linear-gradient(
         135deg,
-        /*cycle between colors*/
         var(--paper-dark-blue),
         30%,
         var(--paper-color-blue)
@@ -79,7 +131,6 @@ body {
 #pinkPaper {
     background: linear-gradient(
         135deg,
-        /*cycle between colors*/
         var(--paper-dark-pink),
         30%,
         var(--paper-color-pink)
@@ -93,7 +144,6 @@ body {
 #greenPaper {
     background: linear-gradient(
         135deg,
-        /*cycle between colors*/
         var(--paper-dark-green),
         30%,
         var(--paper-color-green)

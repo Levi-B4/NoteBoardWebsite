@@ -2,48 +2,63 @@
 <html>
   <head>
       <title>Note Board</title>
+      <link rel="shortcut icon" type="image/jpg" href="images\favicon.png"/>
       <link rel="stylesheet" href="./css/style.css">
       <script src="./js/jscript.js"></script>
   </head>
 
   <body>
     <div id="ToDos">
-      <!--Pin which user clicks to create more notes-->
-      <div class="pin" onclick="createNote()">
-        <div class="shadow"></div>
-        <div class="metal"></div>
-        <div class="bottom-circle"></div>
-        <div class="sign">+</div>
+      <div id="ui">
+        <!--Pin to create more notes-->
+        <div class="pin" id="createNotePin" onclick="userPlaceNote()">
+          <div class="shadow"></div>
+          <div class="metal"></div>
+          <div class="bottom-circle"></div>
+          <div class="sign">+</div>
+        </div>
+
+        <!--button to save to local database-->
+        <div class="dataButton" id="saveButton" onclick="saveToDB()">
+          SAVE
+        </div>
+
+        <!--button to clear the local database-->
+        <div class="dataButton" id="clearButton" onclick="resetBoard()">
+          RESET
+        </div>
       </div>
 
-      <!--Basic instructions for users to use website-->
-      <div class="paper" id="greenPaper">
+      <!--
+      <--Basic instructions for users to use website->
+      <div class="paper instructions" id="greenPaper">
         <div class="pin" onclick="removeNote(this)">
           <div class="shadow"></div>
           <div class="metal"></div>
           <div class="bottom-circle"></div>
           <div class="sign">-</div>
         </div>
-        <p>click '+' to add notes<br>'-' to delete notes</p>
+        <textarea>click '+' to add notes<br>'-' to delete notes</textarea>
       </div>
-      <div class="paper" id="pinkPaper">
+      <div class="paper instructions" id="pinkPaper">
         <div class="pin" onclick="removeNote(this)">
           <div class="shadow"></div>
           <div class="metal"></div>
           <div class="bottom-circle"></div>
           <div class="sign">-</div>
         </div>
-        <p>new notes follow your<br>mouse till you click</p>
+        <textarea>new notes follow your<br>mouse till you click</textarea>
       </div>
-      <div class="paper" id="yellowPaper">
+      <div class="paper instructions" id="yellowPaper">
         <div class="pin" onclick="removeNote(this)">
           <div class="shadow"></div>
           <div class="metal"></div>
           <div class="bottom-circle"></div>
           <div class="sign">-</div>
         </div>
-        <p style = "font-size:1.5rem">if on touch screen after<br>tapping '+' tap again<br>to place note</p>
+        <textarea style = "font-size:1.5rem">if on touch screen after<br>tapping '+' tap again<br>to place note</textarea>
       </div>
+      -->
     </div>
   </body>  
 </html>
