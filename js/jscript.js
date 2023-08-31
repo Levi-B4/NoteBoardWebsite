@@ -155,17 +155,24 @@ function displayInstructions() {
     //create instruction notes
     instructions = [
         [createNewNote(), null],
+        [createNewNote(), null],
         [createNewNote(), null]
     ];
 
     verticalSpacing = 250;
-    verticalOffset = -200;
+    verticalOffset = -50;
     horizontalSpacing = 100;
     horizontalOffset = 150;
 
+    instructions[0][1] = instructions[0][0].lastChild
+    noteBoard.appendChild(instructions[0][0]);
+    instructions[0][0].style.top = '50px';
+    instructions[0][0].style.left = horizontalSpacing + horizontalOffset + 'px';
+
+
     //add notes to board
     noteBoard = document.getElementById("ToDos");
-    for(i = 0; i < instructions.length; i++){
+    for(i = 1; i < instructions.length; i++){
         instructions[i][1] = instructions[i][0].lastChild
         noteBoard.appendChild(instructions[i][0]);
         instructions[i][0].style.top = (i + 1) * verticalSpacing + verticalOffset + 'px';
@@ -173,8 +180,10 @@ function displayInstructions() {
     }
 
     //add texts to instruction notes
-    instructions[0][1].textContent = "pins with '+' add notes, pins with '-' delete notes";
-    instructions[1][1].textContent = "new notes follow your mouse, till you click again";
+    instructions[0][1].textContent = "Welcome to your virtual noteboard. Add or remove notes " +
+    "and save them when your done. I use it as a to-do list.";
+    instructions[1][1].textContent = "pins with '+' add notes, pins with '-' delete notes";
+    instructions[2][1].textContent = "new notes follow your mouse, till you click again";
 }
 
 //clears all notes
