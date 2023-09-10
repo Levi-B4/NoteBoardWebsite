@@ -23,7 +23,7 @@ openDBRequest.addEventListener("success", () => {
 //handler for when database needs to be set up or is of an old version
 openDBRequest.addEventListener("upgradeneeded", (e) => {
     db = e.target.result;
-
+    //displays instructions for new users
     displayInstructions();
 
     //create an object store to store notes and add an auto-incrementing key
@@ -32,7 +32,7 @@ openDBRequest.addEventListener("upgradeneeded", (e) => {
         autoIncrement: true,
     });
 
-    //define data items to store
+    //define data items to store in db for notes
     objectStore.createIndex("note", "note", { unique: false });
     objectStore.createIndex("color", "color", { unique: false });
     objectStore.createIndex("positionX", "positionX", { unique: false });
@@ -40,32 +40,29 @@ openDBRequest.addEventListener("upgradeneeded", (e) => {
     objectStore.createIndex("paperRotation", "paperRotation", { unique: false });
     objectStore.createIndex("pinRotation", "pinRotation", { unique: false });
 
-
-  
     console.log("Database setup complete");
 })
 
+//saves notes to the database
 function saveToDB() {
+    //deletes old data from database 
     clearDB();
-
+    
+	//gets all notes from the board
     let noteElements = document.getElementsByClassName("paper");
+    //itterates through all notes to add them to the database
     for (i = 0; i < noteElements.length; i++){
         let noteElement = noteElements.item(i);
         console.log(noteElement);
-        if(noteElement.className == "instructions") continue;
 
-
+		//identifies the pin and text of the note
         let noteText = noteElement.lastChild;
-
-        console.log("accessing transform of " + noteElement.id);
-        let paperTransform = noteElement.style.transform;
-        console.log("paper rotation: " + paperTransform);
-
         let notePin = noteElement.firstChild;
+        //gets the transform of the pin and note
+		let paperTransform = noteElement.style.transform;
         let pinTransform = notePin.style.transform;
-        console.log("pin rotation: " + pinTransform);
 
-
+		//creates note object to save to the database
         const newNote = { 
             note: noteText.textContent,
             color: noteElement.id,
@@ -75,50 +72,51 @@ function saveToDB() {
             pinRotation: pinTransform
         };
 
+		//opens a read/write transaction to add noets
         const transaction = db.transaction(["noteboardObjectStore"], "readwrite");
-
+		//calls object store from database
         const noteboardObjectStore = transaction.objectStore("noteboardObjectStore");
-
+		//makes a request to add note to database
         const addRequest = noteboardObjectStore.add(newNote);
 
+		//if successfully requested, report to console
         addRequest.addEventListener("success", () => {
             console.log("Note Saved");
         });
-
+		//if successfull added, report to console
         transaction.addEventListener("complete", () => {
             console.log("Transaction completed.");
-        
-            // update the display of data to show the newly added item, by running displayData() again.
-            //displayData();
         });
-
+		//if addition failed, report to console
         transaction.addEventListener("error", () =>
             console.log("Transaction not opened due to error"),
         );
     };
+	//report to console when save complete
     console.log("Board Saved");
 }
 
 //display client storage
 function displayData() {
-  
+	//open object store
     const objectStore = db.transaction("noteboardObjectStore").objectStore("noteboardObjectStore");
     let notes = []
-
+	//use cursor to iterate through notes
     objectStore.openCursor().addEventListener("success", (e) => {
-      const cursor = e.target.result;
-
-      if (cursor) {
-        //listItem.setAttribute("data-note-id", cursor.value.id); used for deleting items
-        console.log(cursor.value.color);
-        createNewNote(cursor.value);
-  
-        cursor.continue();
-      } else {
-        console.log("Notes all displayed");
-      }
+		const cursor = e.target.result;
+		//check for next note
+		if (cursor) {
+			//listItem.setAttribute("data-note-id", cursor.value.id); used for deleting items
+			console.log(cursor.value.color);
+			//create new note passing note object from data base
+			createNewNote(cursor.value);
+			//move to next note
+			cursor.continue();
+		} else {
+			//report once all notes are displayed
+			console.log("Notes all displayed");
+		}
     });
-    console.log(notes);
 }
 
 //Clears database memory
@@ -158,7 +156,7 @@ function displayInstructions() {
         [createNewNote(), null],
         [createNewNote(), null]
     ];
-
+	//position notes
     verticalSpacing = 250;
     verticalOffset = -50;
     horizontalSpacing = 100;
@@ -184,6 +182,9 @@ function displayInstructions() {
     "and save them when your done. I use it as a to-do list.";
     instructions[1][1].textContent = "pins with '+' add notes, pins with '-' delete notes";
     instructions[2][1].textContent = "new notes follow your mouse, till you click again";
+	
+	//save instructions to database for next visit
+	saveToDB();
 }
 
 //clears all notes
