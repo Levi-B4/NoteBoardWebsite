@@ -41,6 +41,9 @@ openDBRequest.addEventListener("upgradeneeded", (e) => {
     objectStore.createIndex("pinRotation", "pinRotation", { unique: false });
 
     console.log("Database setup complete");
+	
+	//save instructions to database for next visit
+	saveToDB();
 })
 
 //saves notes to the database
@@ -182,9 +185,6 @@ function displayInstructions() {
     "and save them when your done. I use it as a to-do list.";
     instructions[1][1].textContent = "pins with '+' add notes, pins with '-' delete notes";
     instructions[2][1].textContent = "new notes follow your mouse, till you click again";
-	
-	//save instructions to database for next visit
-	saveToDB();
 }
 
 //clears all notes
